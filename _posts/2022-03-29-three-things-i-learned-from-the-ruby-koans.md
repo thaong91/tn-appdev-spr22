@@ -26,6 +26,7 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 
 ### Others:
 - `/rails/info/routes`: contains list of all routes
+- In Ruby, both `0` and `1` are `true` (whereas in other languages, such as Python, `0` means `false`). Only `false` and `nil` mean `false` in Ruby. All non-`false` and non-`nil` objects are considered `true` in Ruby. 
 
 
 ## Some notes on App Dev 2 class:
