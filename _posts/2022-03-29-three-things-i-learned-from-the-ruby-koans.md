@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Three things I learned from The Ruby Koans
+title: App Dev 2 is off to a great start
 ---
 
 Here are (at least) three things I learned from [The Ruby Koans](http://rubykoans.com/) and first App Dev 2 class:
