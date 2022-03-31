@@ -3,7 +3,7 @@ layout: post
 title: Three things I learned from The Ruby Koans
 ---
 
-Here are (at least) three things I learned from [The Ruby Koans](http://rubykoans.com/):
+Here are (at least) three things I learned from [The Ruby Koans](http://rubykoans.com/) and first App Dev 2 class:
 - How to createe a Github Pages page
 - Markdown is cool
 - I can direcly edit files on github.com
@@ -20,7 +20,7 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 
 
 ### Shortcuts:
-- If a template filename matches an `action` in `controlller` 
+- If a template filename matches an `action` in `controlller`, we can skip the whole `render({ :template => "")` row and Rails will still know which template to render.
 - There are seven RESTful routes for a Rails application, adhering to [this naming convention](https://restfulapi.net/resource-naming/). Typically (and originally in App dev 1), we wrote all these routes in `routes.db` file, but we can use the shortcut `resources(:model)`, e.g. `resources(:directors` or `resources(:movies)` and this will automatically create the seven routes.
 
 
