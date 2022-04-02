@@ -3,7 +3,7 @@ layout: post
 title: App Dev 2 is off to a great start
 ---
 
-Here are (at least) three things I learned from [The Ruby Koans](http://rubykoans.com/) and first App Dev 2 class:
+Here are (at least) three things I learned from [The Ruby Koans](http://rubykoans.com/) and the first App Dev 2 class:
 - How to createe a Github Pages page
 - Markdown is cool
 - I can direcly edit files on github.com
@@ -23,6 +23,20 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 - If a template filename matches an `action` in `controlller`, we can skip the whole `render({ :template => "")` row and Rails will still know which template to render.
 - There are seven RESTful routes for a Rails application, adhering to [this naming convention](https://restfulapi.net/resource-naming/). Typically (and originally in App dev 1), we wrote all these routes in `routes.db` file, but we can use the shortcut `resources(:model)`, e.g. `resources(:directors` or `resources(:movies)` and this will automatically create the seven routes.
 
+### Splat `*` operator
+- Splat operator `*` is another aspect that is rather new and ... confusing to me in Ruby. First of all, splat can be used to construct an Array. Then it's can also be used to desconstruct Arrays, for example:
+- Constructing Array:
+  ```
+  > numbers = *123
+  > numbers
+  # => [123]
+  ```
+- Deconstructing Array:
+  ```
+  > first_name, *last_name = ["John", "Smith", "III"]
+  > p last_name
+  # => ["Smith", "III"]
+  ```
 
 ### Others:
 - `/rails/info/routes`: contains list of all routes
