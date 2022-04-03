@@ -35,7 +35,7 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
   ```
   > first_name, *last_name = ["John", "Smith", "III"]
   > p last_name
-  # => _["Smith", "III"]_
+  # => \_["Smith", "III"]\_
   ```
 
 ### 
