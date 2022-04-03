@@ -45,13 +45,13 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 - `/rails/info/routes`: contains list of all routes
 - In Ruby, both `0` and `1` are `true` (whereas in other languages, such as Python, `0` means `false`). Only `false` and `nil` mean `false` in Ruby. All non-`false` and non-`nil` objects are considered `true` in Ruby. 
 - `.inspect` method is a string class method that returns a printable version of a given string, surrounded by quotation marks, with special characters escaped, for example:
-  ```
+  <pre><code>
   > 123.inspect
   # => _"123"_
   
   > nil.inspect
   # => _"nil"_
-  ```
+  </pre></code>
 - `.object_id` method is a random identifier for an object.
 - `.clone` method creates a copy of an object but keeps the original object. The two objects, original and clone, are different objects with different `object_id`
 - Unlike `NULL` in other programming languages, `nil` in Ruby is also an object.
