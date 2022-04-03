@@ -29,32 +29,83 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
   <pre>
     > numbers = *123
     > numbers
-    # => <i>[123]</i>
+    <i># => [123]</i>
   </pre>
     
 - Deconstructing Array:
   <pre>
     > first_name, *last_name = ["John", "Smith", "III"]
     > p last_name
-    # => <i>["Smith", "III"]</i>
+    <i># => ["Smith", "III"]</i>
   </pre>
 
-### 
+### Private vs. Public methods
+- By default, all methods in Ruby are `public`, meaning that anyone can use them. 
+- In contrast, `private` methods are those that can only be called within a class where it's defined. Define a private method by:
+  ```
+    def my_private_method
+      "a secret"
+    end
+  
+    private :my_private_method
+  ```
+- One of the benefits of private methods is that it conceals the implementation inside classes (so, not showing methods that you don't want others to see/use.)
 
+### Constants
+- Top level constant can be referenced/called by using double colons `::`
+- Nested constant (within a class) can be referenced either by relative path or complete path using double colons `::`. For example:
+  <code>
+    C = "top level"
+
+    class AboutConstants < Neo::Koan
+      C = "nested"
+    end
+
+    > ::C
+    <i># => "top level"</i>
+    
+    > p AboutConstants::C
+    <i># => "nested"
+    
+    > p ::AboutConstants::C
+    <i># => "nested"
+  </code>
+  
+- Nested constants take precedence over inherited constants. For example:
+  <code>
+    class Animal
+      LEGS = 4
+      
+      def legs_in_animal
+        LEGS
+      end
+    end
+    
+    class MyAnimals
+      LEGS = 2
+
+    class Bird < Animal
+      def legs_in_bird
+        LEGS
+      end
+    end
+    
+  > p MyAnimals::Bird.new.legs_in_bird
+  <i># => 4</i>
+  </code>
 
 ### Others:
 - `/rails/info/routes`: contains list of all routes
 - In Ruby, both `0` and `1` are `true` (whereas in other languages, such as Python, `0` means `false`). Only `false` and `nil` mean `false` in Ruby. All non-`false` and non-`nil` objects are considered `true` in Ruby. 
 - `.inspect` method is a string class method that returns a printable version of a given string, surrounded by quotation marks, with special characters escaped, for example:
   <pre>
-    <code>
     > 123.inspect
     # => <i>"123"</i>
 
     > nil.inspect
     # => <i>"nil"</i>
-    </code>
   </pre>
+  
 - `.object_id` method is a random identifier for an object.
 - `.clone` method creates a copy of an object but keeps the original object. The two objects, original and clone, are different objects with different `object_id`
 - Unlike `NULL` in other programming languages, `nil` in Ruby is also an object.
