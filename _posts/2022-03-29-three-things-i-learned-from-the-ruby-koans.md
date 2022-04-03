@@ -27,20 +27,16 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 - Splat operator `*` is another aspect that is rather new and ... confusing to me in Ruby. First of all, splat can be used to construct an Array. Then it's can also be used to desconstruct Arrays, for example:
 - Constructing Array:
   <pre>
-    <code>
-      > numbers = *123
-      > numbers
-      # => <i>[123]</i>
-     </code>
+    > numbers = *123
+    > numbers
+    # => <i>[123]</i>
   </pre>
     
 - Deconstructing Array:
   <pre>
-    <code>
-      > first_name, *last_name = ["John", "Smith", "III"]
-      > p last_name
-      # => <i>["Smith", "III"]</i>
-    </code>
+    > first_name, *last_name = ["John", "Smith", "III"]
+    > p last_name
+    # => <i>["Smith", "III"]</i>
   </pre>
 
 ### 
