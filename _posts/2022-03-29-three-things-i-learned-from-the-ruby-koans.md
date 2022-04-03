@@ -54,7 +54,7 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 ### Constants
 - Top level constant can be referenced/called by using double colons `::`
 - Nested constant (within a class) can be referenced either by relative path or complete path using double colons `::`. For example:
-  <code>
+  <pre>
     C = "top level"
 
     class AboutConstants < Neo::Koan
@@ -69,10 +69,10 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
     
     > p ::AboutConstants::C
     <i># => "nested"
-  </code>
+  </pre>
   
 - Nested constants take precedence over inherited constants. For example:
-  <code>
+  <pre>
     class Animal
       LEGS = 4
       
@@ -91,8 +91,8 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
     end
     
   > p MyAnimals::Bird.new.legs_in_bird
-  <i># => 4</i>
-  </code>
+  <i># => 2</i>
+  </pre>
 
 ### Others:
 - `/rails/info/routes`: contains list of all routes
