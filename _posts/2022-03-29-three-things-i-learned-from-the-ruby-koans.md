@@ -29,19 +29,33 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
   ```
   > numbers = *123
   > numbers
-  # => [123]
+  # => *[123]*
   ```
 - Deconstructing Array:
   ```
   > first_name, *last_name = ["John", "Smith", "III"]
   > p last_name
-  # => ["Smith", "III"]
+  # => _["Smith", "III"]_
   ```
+
+### 
+
 
 ### Others:
 - `/rails/info/routes`: contains list of all routes
 - In Ruby, both `0` and `1` are `true` (whereas in other languages, such as Python, `0` means `false`). Only `false` and `nil` mean `false` in Ruby. All non-`false` and non-`nil` objects are considered `true` in Ruby. 
-
+- `.inspect` method is a string class method that returns a printable version of a given string, surrounded by quotation marks, with special characters escaped, for example:
+  ```
+  > 123.inspect
+  # => _"123"_
+  
+  > nil.inspect
+  # => _"nil"_
+  ```
+- `.object_id` method is a random identifier for an object.
+- `.clone` method creates a copy of an object but keeps the original object. The two objects, original and clone, are different objects with different `object_id`
+- Unlike `NULL` in other programming languages, `nil` in Ruby is also an object.
+- 
 
 ## Some notes on App Dev 2 class:
 - Instead of using `appdev-projects/base-rails` repo to create a blank new rails app, we'll now use `appdev-project/vanilla-rails` to create more robust Rails applications from now on.
