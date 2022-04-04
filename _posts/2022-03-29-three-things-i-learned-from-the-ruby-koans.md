@@ -4,7 +4,7 @@ title: App Dev 2 is off to a great start
 ---
 
 Here are (at least) three things I learned from [The Ruby Koans](http://rubykoans.com/) and the first App Dev 2 class:
-- How to createe a Github Pages page
+- How to create a Github Pages page
 - Markdown is cool
 - I can direcly edit files on github.com
 - Git is still confusing
@@ -102,7 +102,7 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
   > new_array
   > [11, 12, 13]
   ```
--  `select` and `finad_all` are two Array methods to select all elements from an Array that meet certain criterias whereas `find` only returns the first element that does.
+-  `select` and `find_all` are two Array methods to select all elements from an Array that meet certain criterias whereas `find` only returns the first element that does.
 -  `inject` is probably the most fascinating enumerator method that I'm learning through Ruby Koans. I'm probably not going to be able to eloquently explain how this method works, but someone else did that [here](https://stackoverflow.com/questions/710501/need-a-simple-explanation-of-the-inject-method).
 
 ### Others:
