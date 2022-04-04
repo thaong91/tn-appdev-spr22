@@ -71,7 +71,7 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
     > "nested"
   ```
   
-- Nested constants take precedence over inherited constants. For example:
+- Nested constants take precedence over inherited constants...sometimes. For example:
   ```
     class Animal
       LEGS = 4
@@ -94,6 +94,17 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
   > "2"
   ```
 
+### Iteration methods:
+- `collect` and `map` are two Array methods to transform each element of an array. For example:
+  ```
+  > array = [1, 2, 3]
+  > new_array = array.collect { |item| item + 10 }
+  > new_array
+  > [11, 12, 13]
+  ```
+-  `select` and `finad_all` are two Array methods to select all elements from an Array that meet certain criterias whereas `find` only returns the first element that does.
+-  `inject` is probably the most fascinating enumerator method that I'm learning through Ruby Koans. I'm probably not going to be able to eloquently explain how this method works, but someone else did that [here](https://stackoverflow.com/questions/710501/need-a-simple-explanation-of-the-inject-method).
+
 ### Others:
 - `/rails/info/routes`: contains list of all routes
 - In Ruby, both `0` and `1` are `true` (whereas in other languages, such as Python, `0` means `false`). Only `false` and `nil` mean `false` in Ruby. All non-`false` and non-`nil` objects are considered `true` in Ruby. 
@@ -109,7 +120,8 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 - `.object_id` method is a random identifier for an object.
 - `.clone` method creates a copy of an object but keeps the original object. The two objects, original and clone, are different objects with different `object_id`
 - Unlike `NULL` in other programming languages, `nil` in Ruby is also an object.
-- 
+- `fail` and `raise` are synonymous
+
 
 ## Some notes on App Dev 2 class:
 - Instead of using `appdev-projects/base-rails` repo to create a blank new rails app, we'll now use `appdev-project/vanilla-rails` to create more robust Rails applications from now on.
