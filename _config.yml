@@ -3,7 +3,7 @@ title:               'Today I Learned'
 tagline:             'Notes to self about software development'
 description:         ''
 url:                 'https://thaong91.github.io/'
-baseurl:             'tn-appdev-spr22/'
+baseurl:             'til/'
 paginate:            5
 permalink:           pretty
 
