@@ -121,6 +121,9 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 - `.clone` method creates a copy of an object but keeps the original object. The two objects, original and clone, are different objects with different `object_id`
 - Unlike `NULL` in other programming languages, `nil` in Ruby is also an object.
 - `fail` and `raise` are synonymous
+- `super` is a method that, once called within another method, will try to find another method of the same name on the parent class. [Here](https://www.rubyguides.com/2018/09/ruby-super-keyword/) is better explanation of how `super` works. 
+
+### Modules
 
 
 ## Some notes on App Dev 2 class:
