@@ -41,4 +41,6 @@ To prevent CSRF (Cross-Site Request Forgery)
   ```
   root "movies#index"
   ```
+- We can name a route and refer to it anywhere else in the application. Rails will automatically create these named routes once we configure the routes, as long as there are no dynamic components in the routes. For example, `/` is `root_path`, `/movies` is `movies_path` , but for our dynamic routes to movie detail page `/movies/:id`, we'll need to define what to name it using `as: :details` with `:details` in this case is the name of the route. After naming it, `/movies/:id` is now `details_path`. In other places of the application, we can refer to this path using `<%= details_path(:id) %>`, replacing `:id` with a movie ID. This naming route practice is especially helpful if and when we need to update a route in the future, e.g. from `/movies/:id` to something like `/films/:id`, we will only need to update it once in the `routes.rb` file instead of update the routes everywhere in the codebase, since we're keeping `details_path` as this route's name. 
+
 #### 
