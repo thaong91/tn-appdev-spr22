@@ -1,6 +1,6 @@
 ---
 layout: post
-title: App Dev 2 is off to a great start
+title: Class 1 - App Dev 2 is off to a great start
 ---
 
 Here are (at least) three things I learned from [The Ruby Koans](http://rubykoans.com/) and the first App Dev 2 class:
