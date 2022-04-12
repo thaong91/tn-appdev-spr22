@@ -20,6 +20,7 @@ title: Class 2 - More helper methods and cleaner codes
   <% end %>
   ```
   with `movies_path` is the name for route `/movies` (see **Routes** section below for more details.)
+  
 - In addition to `form_with` method, there are other helper methods in Rails that can help us construct form easier, more secure, and faster. They are:
   - `<%= label_tag %>` to replace `label` HTML tag. So instead of writing:
     ```
@@ -29,6 +30,7 @@ title: Class 2 - More helper methods and cleaner codes
     ```
     <%= label_tag :title_box, "Title" %>
     ```
+    
   - `<%= text_field_tag %>` or `<%= number_field_tag %>` or `<%= text_area_tag %>`, etc. to replace different `type` of `input` HTML tag. For example, we'll use `text_field_tag` when `type="text` and `number_field_tag` when `type="number"`. So instead of writing:
     ```
     <input type="text" id="title_box" name="query_title" value="<%= @the_movie.title %>">
@@ -38,11 +40,54 @@ title: Class 2 - More helper methods and cleaner codes
     <%= text_field_tag :query_title, @the_movie.title, { id: "title_box"} %>
     ```
     By default, the `text_field_tag` method will use the first argument (in this case, `:query_title`) as both `name` and `id` for this `input` tag. If we want to customize any of these, we can pass a `Hash` argument at the end to do so, in this case, we added `{ id: "title_box"}`.
+    
 - We'll never write an `<a>` tag again to link two webpages (e.g. to point back to previous page). Instead, we'll use `<%= link_to %>` and `<%= form_with %>`, for example:
   ```
   <%= link_to "Go back", "/movies" %>
   ```
+  
+- In Rails, for forms that are used to create or update a database records, we can use `form_with(model:)` instead of `form_with(url:)` as long as all our routes are named RESTfully.
+  So instead of writing this block of code:
+  ```
+  <%= form_with(utl: @movie_path) do |form| %>
+  <div>
+    <%= label_tag :title %>
+    <%= text_field_tag "movie[title]", @movie.title %>
+  </div>
 
+  <div>
+    <%= label_tag :description %>
+    <%= text_area_tag "movie[description]", @movie.description, rows: 3 %>
+  </div>
+
+  <%= button_tag "Create movie" %>
+  <% end %>
+  ```
+  we can instead write:
+  ```
+  <%= form_with(model: @movie) do |form| %> 
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description, rows: 3 %>
+  </div>
+
+  <%= form.button %> 
+  <% end %>
+  ```
+  Notes:
+  - We can skip "Create Movie" on the button here because Rails can automatically do that (using the action and the model that we're currently working on.)
+  - To make `(model: @movie)` here works, under `create` method in `MoviesController` we'll need to specify that: 
+    ```
+    movie_attributes = params.require(:movie).permit(:title, :description)
+    @movie = Movie.new(movie_attributes)
+    ```
+    We no longer use `params.fetch()` here, but instead using `params.require()` to specify the Hash that we'll get data from. Additionally, we'll need to tell Rails which database columns can be whitelisted using `permit()`, as Rails will automatically prevent this type of insert from happening (for CSRF reason.)
+    
 ### `.where` vs. `.find_by` vs. `.find` to query a `Hash`:
 - In App Dev 1, we often used `Hash.where({}).at(0)` to return the first object because `.where` returns a relation and `.at(0)` returns first record within that relation. Now we can just use `.find_by` to achieve the same thing.
 - `.where` will always returns a relation whether it's empty or not, whereas `.find_by` will either return a record or `nil`.
