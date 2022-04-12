@@ -124,9 +124,6 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 - `super` is a method that, once called within another method, will try to find another method of the same name on the parent class. [Here](https://www.rubyguides.com/2018/09/ruby-super-keyword/) is better explanation of how `super` works. 
 - Start using `raise` to display meaningful error message and exceptions.
 
-### Modules
-
-
 ## Some notes on App Dev 2 class:
 - Instead of using `appdev-projects/base-rails` repo to create a blank new rails app, we'll now use `appdev-project/vanilla-rails` to create more robust Rails applications from now on.
 
