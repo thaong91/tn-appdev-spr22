@@ -26,11 +26,11 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 ### Splat `*` operator
 - Splat operator `*` is another aspect that is rather new and ... confusing to me in Ruby. First of all, splat can be used to construct an Array. Then it's can also be used to desconstruct Arrays, for example:
 - Constructing Array:
-  ```
+  <pre>
     > numbers = *123
     > numbers
     <i># => [123]</i>
-  ```
+  </pre>
     
 - Deconstructing Array:
   <pre>
@@ -42,7 +42,7 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 ### Private vs. Public methods
 - By default, all methods in Ruby are `public`, meaning that anyone can use them. 
 - In contrast, `private` methods are those that can only be called within a class where it's defined. Define a private method by:
-  ```
+  ```ruby
     def my_private_method
       "a secret"
     end
