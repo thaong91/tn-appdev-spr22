@@ -54,7 +54,7 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 ### Constants
 - Top level constant can be referenced/called by using double colons `::`
 - Nested constant (within a class) can be referenced either by relative path or complete path using double colons `::`. For example:
-  ```
+  ```ruby
     C = "top level"
 
     class AboutConstants < Neo::Koan
@@ -72,7 +72,7 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
   ```
   
 - Nested constants take precedence over inherited constants...sometimes. For example:
-  ```
+  ```ruby
     class Animal
       LEGS = 4
       
@@ -96,7 +96,7 @@ Here are (at least) three things I learned from [The Ruby Koans](http://rubykoan
 
 ### Iteration methods:
 - `collect` and `map` are two Array methods to transform each element of an array. For example:
-  ```
+  ```ruby
   > array = [1, 2, 3]
   > new_array = array.collect { |item| item + 10 }
   > new_array
