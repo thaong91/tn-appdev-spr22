@@ -3,6 +3,8 @@ layout: post
 title: Learning Javascript
 ---
 
+### Variables
+--
 #### When to use `const` vs. `let`
 `const` is more frequently used for declarative variables (like numbers or boolean) because it has many restrictions that make code more readable, including:
 1. It must be initialized with value
@@ -34,12 +36,73 @@ To fix this issue, we use `let` and `const` instead, as they are "block-scoped`:
   }
 ```
 #### Template literals
-Using `${}` to wrap around variables and then wrap it with ` `` ` will make code simpler and more printable. For example:
+Using `${}` to wrap around variables and then wrap the string with ` `` ` will make code simpler and more printable. For example:
 ```javascript
   let username = "Jane Doe";
   let message = `Hi ${username}, how are you?`;
   console.log(message);
 ```
+To have a string that span multiple lines, we use `\n` to do so.
+
+#### So, how should variables be named?
+- Variable names are case-sensitive
+- Variable names should be descriptive so that it's easier to understand
+- camelCase syntax
+- Only letters, numbers, and `$` and `_` symbols are allowed
+- Boolean should have `is` or `has` at the beginning of the variable name
+- To signify variable names should not be changed by other developers, we write it in all caps like `COLOR_RED`
+
+### Types & Conditionals
+--
+#### `If` and `Switch` statements:
+`If`, `else if `, and `else` statement in javascript is very similar to other languages (with the exception of syntax). For example:
+```javascript
+  const colorMode = 'dark';
+
+  if (colorMode === 'solarized') {
+     console.log('solarized mode set!'); 
+     document.body.style.background = 'palegoldenrod';
+  } else if (colorMode === 'dark') {
+    console.log('dark mode set!');  
+    document.body.style.background = 'black';
+  } else {    
+    console.log('light mode set!');
+    document.body.style.background = 'ghostwhite';
+  }
+```
+Note that we use `===` (instead of `==` like in Ruby and Python) to check a condition. But since we don't want to write those cases many times, we can use `switch`, `case`, and `default`:
+```javascript
+const colorMode = 'dark';
+
+switch (colorMode) {
+  case "solarized":
+   console.log('solarized mode set!'); 
+   document.body.style.background = 'palegoldenrod';
+  case 'dark':
+    console.log('dark mode set!');  
+    document.body.style.background = 'black';
+    break;
+  default:  
+    console.log('light mode set!');
+    document.body.style.background = 'ghostwhite';
+}
+```
+`break` is used here to tell the program to stop running any code below that line if the conditions above it have been met.
+
+#### Types
+We can convert one type of variable to another. 
+1. Explicit type conversion
+```javascript
+let message = 'some string';
+
+console.log(String(message));
+```
+2. Implicit(automatic or coercion) type conversion:
+```javascript
+  console.log('1' * '2');
+```
+Javascript will automatically convert those string variables to numbers because `*` is not a string operator.
+
 
 
 
