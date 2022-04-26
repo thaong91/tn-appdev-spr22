@@ -33,5 +33,13 @@ To fix this issue, we use `let` and `const` instead, as they are "block-scoped`:
     console.log('sale price', price);
   }
 ```
+#### Template literals
+Using `${}` to wrap around variables and then wrap it with ```` will make code simpler and more printable. For example:
+```javascript
+  let username = "Jane Doe";
+  let message = `Hi ${username}, how are you?`;
+  console.log(message);
+```
+
 
 
