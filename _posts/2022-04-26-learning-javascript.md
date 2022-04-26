@@ -34,7 +34,7 @@ To fix this issue, we use `let` and `const` instead, as they are "block-scoped`:
   }
 ```
 #### Template literals
-Using `${}` to wrap around variables and then wrap it with ```` will make code simpler and more printable. For example:
+Using `${}` to wrap around variables and then wrap it with ` `` ` will make code simpler and more printable. For example:
 ```javascript
   let username = "Jane Doe";
   let message = `Hi ${username}, how are you?`;
