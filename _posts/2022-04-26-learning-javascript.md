@@ -23,7 +23,7 @@ title: Learning Javascript
 
   console.log('price', price);
 ```
-This block of code will print out `18` instead of `20 because it ignores the code block didn't create a new variable `price` but rather updating value of the global `price` variable that we defined using `var`.
+This block of code will print out `18` instead of `20` because it ignores the code block didn't create a new variable `price` but rather updating value of the global `price` variable that we defined using `var`.
 To fix this issue, we use `let` and `const` instead, as they are "block-scoped`:
 ```javascript
   if (isSale) {
