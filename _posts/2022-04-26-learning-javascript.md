@@ -90,19 +90,77 @@ switch (colorMode) {
 `break` is used here to tell the program to stop running any code below that line if the conditions above it have been met.
 
 #### Types
-We can convert one type of variable to another. 
-1. Explicit type conversion
-```javascript
-let message = 'some string';
+- We can convert one type of variable to another. 
+    - Explicit type conversion
+    ```javascript
+    let message = 'some string';
+    
+    console.log(String(message));
+    ```
+    - Implicit(automatic or coercion) type conversion:
+    ```javascript
+      console.log('1' * '2');
+    ```
+    Javascript will automatically convert those string variables to numbers because `*` is not a string operator.
+- The following six values are default to "falsy" in Javascript: `false`, `0`, `''`, `null`, `undefined`, `NaN`.
+- How to avoid confusion when dealing with falsy and truthy values:
+    1. Avoid direct comparisons in conditionals. For example:
+        ```javascript
+        const username = null;
+        if (!username) {
+        console.log('no user');
+        }
+        ```
+    2. Use triple equals === (strict equals operator). For example:
+        ```javascript
+        if (null === undefined) {
+        console.log('equals');
+        } else {
+        console.log('not equals');
+        }
+        ```
+    
+    3. Convert to real Boolean values where needed
+        ```javascript
+        if (Boolean(NaN) === Boolean(NaN)) {
+        console.log('equal');
+        } else {
+        console.log('not equals');
+        }
+        ```
+#### Terneries and Short-circuiting:
+- **Terneries** are helpful to shorten conditional statements where variables are conditionally assigned. For example, this `if` statement:
+    ```javascript
+    const isAuthenticated = false;
+    let cartItemCount = 0;
+    
+    if (isAuthenticated) {
+        // add item to cart
+        cartItemCount = 1;
+    } else {
+        cartItemCount = 0;
+    }
+    ```
+    can be rewritten as:
+    ```javascript
+    const cartItemCount = isAuthenticated ? 1 : 0;
+    ```
+- If there are multiple `else if` conditions, we can technically chain terneries together. However, this will make our code more difficult to read, so it's not recommended.
+- **Short-circuiting** is antoher way to shorten conditionals even more by using operators `||` (OR) and `&&` (AND) when it evaluates an argument and return either `true` value or a fallback or default value. For example, the following code:
+    ```javascript
+    const username;
+    const isEmailVerified = true;
 
-console.log(String(message));
-```
-2. Implicit(automatic or coercion) type conversion:
-```javascript
-  console.log('1' * '2');
-```
-Javascript will automatically convert those string variables to numbers because `*` is not a string operator.
-
-
-
-
+    if (response) {
+        if (isEmailVerified) {
+            username = response;
+        }
+    } else {
+        username = "guest";
+    }
+    ```
+    can be re-written as:
+    ```javascript
+    const username = isEmailVerified && response || "guest";
+    ```
+    We need to pay attention to operator precendence, where `&&` is executed before `||`.
