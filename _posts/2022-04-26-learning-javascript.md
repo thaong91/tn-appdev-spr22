@@ -4,13 +4,13 @@ title: Learning Javascript
 ---
 
 ### Variables
---
+---
 #### When to use `const` vs. `let`
 `const` is more frequently used for declarative variables (like numbers or boolean) because it has many restrictions that make code more readable, including:
 1. It must be initialized with value
 2. Can't be reassigned after declaration
 
-##### Variable shawdowing:
+#### Variable shawdowing:
 ```javascript
   var price = 20;
   var isSale = true;
@@ -53,7 +53,7 @@ To have a string that span multiple lines, we use `\n` to do so.
 - To signify variable names should not be changed by other developers, we write it in all caps like `COLOR_RED`
 
 ### Types & Conditionals
---
+---
 #### `If` and `Switch` statements:
 `If`, `else if `, and `else` statement in javascript is very similar to other languages (with the exception of syntax). For example:
 ```javascript
@@ -165,7 +165,8 @@ switch (colorMode) {
     ```
     We need to pay attention to operator precendence, where `&&` is executed before `||` and parenthesis `()` has the highest precedence.
 
-#### Functions
+### Functions
+---
 - Declare a function with `function` followed by its name, arguments within `()` and then specify the function within `{}`.
 - Variables declared within a function will only be valid within that function ("function-scoped" and not global scope). Conversely, functions can access any global-scoped variables.
 - Instead of throwing errors, Javascript will just ignore any additional arguments that were passed into a function if they were not declared previously. 
@@ -193,19 +194,19 @@ switch (colorMode) {
   ```javascript
   function convertTemperature(celsius, decimalPlaces = 1)
   ```
-- Arrow  Functions: `=>`
-    Instead of writing:
-    ```javascript
-    function capitalizeName(name) {
+#### Arrow  Functions: `=>`
+- Instead of writing:
+  ```javascript
+  function capitalizeName(name) {
     return `${name.charAt(0).toUpperCase()}${name.slice(1)}`;  
-    }
-    ```
-    we can re-write this function using arrow functions:
-    ```javascript
-    const capitalize = (name) => {
+  }
+  ```
+  we can re-write this function using arrow functions:
+  ```javascript
+  const capitalize = (name) => {
     return `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
-    }
-    ```
+  }
+  ```
 - We can actually drop the `()` around `(name)` and just write `name`, since there is only one variable here. But we'll need to use `()` if there are more than one variable.
 - We can also remove the `{}` and `return` keywords altogether to make the function more concise:
     ```javascript
@@ -257,7 +258,9 @@ switch (colorMode) {
     ```
 - Function should be named with action verbs
 
-#### Objects and Maps
+### Objects and Maps
+---
+#### Objects
 - Objects are used to organized related and unchanging data. 
     ```javascript
     const colors = {blue:'#f00', orange: '#f60', red: '#00f'}
