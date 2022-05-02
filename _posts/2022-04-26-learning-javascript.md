@@ -256,3 +256,39 @@ switch (colorMode) {
     });
     ```
 - Function should be named with action verbs
+
+#### Objects and Maps
+- Objects are used to organized related and unchanging data. 
+    ```javascript
+    const colors = {blue:'#f00', orange: '#f60', red: '#00f'}
+    ```
+- Objects are reference type and not primitive type
+- We can access the value of the above object with `color[blue]`
+- We can destructure object and make certain keys to become variables by:
+    ```javascript
+    const { blue, orange } = myColor;
+    ```
+    Another example:
+    ```javascript
+    const user = {
+      name: "Reed",
+      username: "Reedbarger",
+      email: "reed@gmail.com",
+      details: {
+        title: "Programmer"
+      }
+    };
+    
+    const { name, details: { title} } = user;
+    
+    function displayUserBio() {
+      console.log(`${name} is a ${title}`);
+    }
+    ```
+    After that, both `name` and `title` are now variables that we can accessed more easily. If we run `displayUserBio()`, we'll get `Reed is a Programmer`
+- To use this function to access data of multiple users with similar `user` object structure, we can also rewrite the `displayUserBio` function to:
+  ```
+  function displayUserBio({ name, details: { title} }) {
+    console.log(`${name} is a ${title}`);
+  }
+  ```
