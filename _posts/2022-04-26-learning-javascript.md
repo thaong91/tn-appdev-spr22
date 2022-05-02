@@ -163,4 +163,96 @@ switch (colorMode) {
     ```javascript
     const username = isEmailVerified && response || "guest";
     ```
-    We need to pay attention to operator precendence, where `&&` is executed before `||`.
+    We need to pay attention to operator precendence, where `&&` is executed before `||` and parenthesis `()` has the highest precedence.
+
+#### Functions
+- Declare a function with `function` followed by its name, arguments within `()` and then specify the function within `{}`.
+- Variables declared within a function will only be valid within that function ("function-scoped" and not global scope). Conversely, functions can access any global-scoped variables.
+- Instead of throwing errors, Javascript will just ignore any additional arguments that were passed into a function if they were not declared previously. 
+- To return a value from a function, use `return` keyword.
+- An example function:
+  ```javascript
+  function splitBill(amount, numPeople) {
+    return `Each person pays ${amount / numPeople}`
+  } 
+  ```
+- Functions can be returned (just like variables) within other functions. For example:
+  ```javascript
+  function handleLikePost(step) {
+    let likeCount = 0;
+    return function addLike() {
+      likeCount += step;    
+      return likeCount;
+    }
+  }
+  const like = handleLikePost(1);
+  console.log(like());
+  ```
+- Closures are a property of Javascript functions and not any other languages. We can observe closures by calling function in a different scope than where function was original defined. In the example above, JS is actually accessing `likeCount` variable here without us having to call `addLike()` function, because closure preserves this variable instead of destroying it after executing the `handleLikePost` function.
+- Specifying default value of a variable within the function argument using `=`, for example:
+  ```javascript
+  function convertTemperature(celsius, decimalPlaces = 1)
+  ```
+- Arrow  Functions: `=>`
+    Instead of writing:
+    ```javascript
+    function capitalizeName(name) {
+    return `${name.charAt(0).toUpperCase()}${name.slice(1)}`;  
+    }
+    ```
+    we can re-write this function using arrow functions:
+    ```javascript
+    const capitalize = (name) => {
+    return `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+    }
+    ```
+- We can actually drop the `()` around `(name)` and just write `name`, since there is only one variable here. But we'll need to use `()` if there are more than one variable.
+- We can also remove the `{}` and `return` keywords altogether to make the function more concise:
+    ```javascript
+    const capitalize = name => `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+    ```
+- Callback function is just a function that is called after another function and is a high-order function. For example:
+    ```javascript
+    const username = 'john';
+    const capitalize = name => `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+    
+    function greetUser(name, callback) {
+      return callback(capitalize(name));
+    }
+    
+    const result = greetUser(username, name => `Hi there, ${name}!`);
+    ```
+    In this case `callback` function will be called/executed after `capitalize()` function has been called. If we `console.log(result)` in this case, we'll get `Hi there, John!` as result.
+- With that, we can re-write the `splitBill` function earlier to arrow function:
+    ```javascript
+    const splitBill = (amount, numPeople) => `Each person needs to pay ${amount / numPeople}`
+    ```
+- Also, re-writing the `coundDown` function to:
+    ```javascript
+    const countdown = (startingNumber, step) => {
+      let countFromNum = startingNumber + step;
+      return () => countFromNum -= step;
+    }
+    ```
+- Partial application is particularly useful to separate functions out to more distinctive roles and increase re-usability.
+    ```javascript
+    function getData(baseUrl) {
+       return function(route) {
+         return function(callback) {
+           fetch(`${baseUrl}${route}`)
+             .then(response => response.json())
+             .then(data => callback(data));  
+         }
+       }
+    }
+
+    const getSocialMediaData = getData('https://jsonplaceholder.typicode.com');
+
+    const getSocialMediaPosts = getSocialMediaData('/posts');
+    const getSocialMediaComments = getSocialMediaData('/comments');
+    
+    getSocialMediaPosts(posts => {
+    posts.forEach(post => console.log(post.title));
+    });
+    ```
+- Function should be named with action verbs
