@@ -360,3 +360,7 @@ switch (colorMode) {
   }
   );  
   ```
+
+### Arrays and Sets
+---
+#### Arrays
