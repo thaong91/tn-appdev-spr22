@@ -295,3 +295,68 @@ switch (colorMode) {
     console.log(`${name} is a ${title}`);
   }
   ```
+- If we want to create new object with similar structure to `user` above, but don't have all the information available, we can:
+  ```javascript
+  const newUser = {
+  username: "ReedBarger",
+  email: "reed@gmail.com",
+  password: "mypassword"  
+  };
+
+  Object.assign({}, user, newUser);
+  ```
+  the `{}` is to create a new empty object that is the same as `user` and ensure that we don't mutate values of the original `user`. 
+  However, we can tell JS explicitly to create a new Object merging `user` and `newUser` and spreading all properties of existing Objects (using `...` syntax):
+  ```javascript
+  const createdUser = { ...user, ...newUser, verified: false };
+  ```
+- If Object key (which we can get with `Object.keys()`) is not a string, then JS will automatically convert it into string.
+
+#### Maps
+- Create new Map:
+  ```javascript
+  new Map([
+    ['key', 'value']  
+  ]);
+  ```
+- `.set('key', 'value')` method mutates a Map. If Object is unordered, Map is ordered and so it will keep the same order of all key-value pairs.
+- `.forEach()` is an iterative method for Map. For example:
+  ```javascript
+  const map1 = new Map([
+    [1, 1],
+    [true, true]  
+  ]);
+  
+  map1.forEach((value, key) => {
+    console.log(key, value);  
+  });
+  ```
+- `.get(key)` to get a value from key-value pair in a Map.
+- `.size()` is used to get the number of key-value pairs in a Map.
+- `WeakMap` can be useful to create Map where key is another Object so that we can easily throw away when done and save memory.
+- `this` keyword used to extract value from a Map, for example:
+  ```javascript
+  const userData = { 
+    username: "Reed",
+    title: "JavaScript Programmer",
+    getBio() {
+      console.log(`User ${this.username} is a ${this.title}`);
+    }  
+  }
+  ```
+  `userData.getBio()` will get the right values.
+- Using arrow function, we can also access `this` in another nested function:
+  ```javascript
+    const userData = { 
+    username: "Reed",
+    title: "JavaScript Programmer",
+    getBio() {
+      console.log(`User ${this.username} is a ${this.title}`);
+    },
+    askToFriend() {
+    setTimeout(() => {
+      console.log(`Would you like to friend ${this.username}?`);   
+    }, 2000
+  }
+  );  
+  ```
