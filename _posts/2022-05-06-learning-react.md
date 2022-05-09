@@ -5,7 +5,7 @@ title: Learning Javascript
 
 This is going to be another rather lengthy note documenting my learning as I'm going through the React course on Scrimba. Here we go:
 
-### First React code, wHy React, and building a React info site
+### First React code, why React, and building a React info site
 ---
 #### Setting up
 - This is mostly going through an easy setup and starting a simple React project.
@@ -31,6 +31,19 @@ This is going to be another rather lengthy note documenting my learning as I'm g
   import React from "react"
   import ReactDOM from "react-dom"
   ```
+- Set up React locally with Create React App:
+  - First, make sure that we have Node.js and NPM installed on local machine (type into Terminal: `node -v` and `npm -v` to check. If we don't already have Node.js, we need to install it with [nvm](https://github.com/nvm-sh/nvm) or [nvm-window](https://github.com/coreybutler/nvm-windows)
+  - Go to [Create React App](https://create-react-app.dev/) webpage
+  - To create a project called _my-app_, run this command in Terminal:
+    ```
+    npx create-react-app my-app
+    ```
+  - Then run:
+    ```
+    cd my-app
+    npm start
+    ```
+  - If run correctly, we should see something like `Compiled successfully!` and default React screen
 
 #### Creating first React component
 **React is composable**: Creating React component using JS function then `ReactDOM.render()` it. For example:
@@ -92,26 +105,119 @@ An imperative way to write our previous React code
   import React from "react"
   import ReactDOM from "react-dom"
 
-  function TemporaryName() {
+  function MainPage() {
+    return (
+        <div>
+            <header>
+                <nav>
+                    <img src="./react-logo.png" width="40px" />
+                </nav>
+            </header>
+            <h1>Reasons I'm excited to learn React</h1>
+            <ol>
+                <li>It's a popular library, so I'll be 
+                able to fit in with the cool kids!</li>
+                <li>I'm more likely to get a job as a developer
+                if I know React</li>
+            </ol>
+            <footer>
+                <small>© 2021 Ziroll development. All rights reserved.</small>
+            </footer>
+        </div>
+    )
+  }
+
+  ReactDOM.render(<MainPage />, document.getElementById("root"))
+  ```
+- We need to use PascalCase instead of camelCase to name React component.
+- Now, instead of keeping everythinng in one parent `MainPage` component, we can separate the above code out to different child components and render them:
+  ```javascript
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function Header() {
+    return (
+        <header>
+            <nav>
+                <img src="./react-logo.png" width="40px" />
+            </nav>
+        </header>
+    )
+  }
+
+  function Footer() {
+      return (
+          <footer>
+              <small>© 2021 Ziroll development. All rights reserved.</small>
+          </footer>
+      )
+  }
+
+  function MainContent() {
       return (
           <div>
-              <img src="./react-logo.png" width="40px" />
-              <h1>Fun facts about React</h1>
-              <ul>
-                  <li>Was first released in 2013</li>
-                  <li>Was originally created by Jordan Walke</li>
-                  <li>Has well over 100K stars on GitHub</li>
-                  <li>Is maintained by Facebook</li>
-                  <li>Powers thousands of enterprise apps, including mobile apps</li>
-              </ul>
+              <h1>Reasons I'm excited to learn React</h1>
+              <ol>
+                  <li>It's a popular library, so I'll be 
+                  able to fit in with the cool kids!</li>
+                  <li>I'm more likely to get a job as a developer
+                  if I know React</li>
+              </ol>
           </div>
       )
   }
 
-  ReactDOM.render(<TemporaryName />, document.getElementById("root"))
+  function Page() {
+      return (
+          <div>
+              <Header />
+              <MainContent />
+              <Footer />
+          </div>
+      )
+  }
+
+  ReactDOM.render(<Page />, document.getElementById("root"))
   ```
-- We need to use PascalCase instead of camelCase to name React component.
-- 
+- Styling in React is very similar to styling in HTML and CSS, but insead of `class=""` we use `className=""`
+
+#### Organizing components
+- Best practice is to separate a substantial React component out to its own `.js` file. For example, we can create a `Header.js` file to contain the `Header` component above. In this file, there are a few things that we need to do to make this component works:
+  As usual, add:
+  ```javascript
+  import React from "react"
+  ```
+  Then add `export default` like this to the function name:
+  ```javascript
+  export default function Header() {}
+  ```
+  Over at the `index.js` (or any other `.js` file that we will need to use this `Header` component), add:
+  ```javascript
+  import Header from "./Header"
+  ```
+- For styling, we will put a `style.css` (or other `.css` files that we will use to style our webpage) in the `src` folder. Then to import this style file:
+  ```javascript
+  import "./style.css"
+  ```
+- For images, we'll put them in `images` folder within `src` folder. Then import them to the `.js` file that renders our page, for example:
+  ```javascript
+  import reactLogo from "../images/react-icon-small.png"
+  ```
+  and then instead of using the relative path within `<img>` tag, we just refer to the image name:
+  ```javascript
+  <img
+    src={reactLogo}
+    alt="React Logo"
+    className="nav--icon"
+  />
+  ```
+- Otherwise, we can use the Public folder to keep these images, but generally, there are some negatives to that.
+- `::marker` is a CSS pseudo-element that selects markers of a bulletted or numbered list. Read more [here](https://developer.mozilla.org/en-US/docs/Web/CSS/::marker)
+
+  
+  
+
+
 
 
 
