@@ -15,7 +15,7 @@ This is going to be another rather lengthy note documenting my learning as I'm g
   <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   ```
-  and another `<script>` to use Babel transformer (from [here](<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>))under `<body>` tag:
+  and another `<script>` to use Babel transformer under `<body>` tag:
   ```HTML
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   ```
