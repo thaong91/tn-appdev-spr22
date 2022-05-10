@@ -214,7 +214,39 @@ An imperative way to write our previous React code
 - Otherwise, we can use the Public folder to keep these images, but generally, there are some negatives to that.
 - `::marker` is a CSS pseudo-element that selects markers of a bulletted or numbered list. Read more [here](https://developer.mozilla.org/en-US/docs/Web/CSS/::marker)
 
+### Data-driven React
+---
+#### Props - Reusable Components
+- Putting variable name inside `{}` to inteprete it (similar to `${}` in JS). Furthermote, anything in between `{}` will be run as javascript.
+- Props (or attributes) in React makes a component for reusable. Props is a JS Object.
+  ```javascript
+  import React from "react"
   
+  export default function Contact(props) {
+    return (
+        <div className="contact-card">
+            <img src={props.img}/>
+            <h3>{props.name}</h3>
+            <div className="info-group">
+                <img src="./images/phone-icon.png" />
+                <p>{props.phone}</p>
+            </div>
+            <div className="info-group">
+                <img src="./images/mail-icon.png" />
+                <p>{props.email}</p>
+            </div>
+        </div>
+    )
+  }
+  ```
+  where `props.img`, `props.name`, `props.phone`, `props.email` are props that are going to be rendered. WE can also destructure this props object and write 
+  ```react
+  export default function Contact({img, name, phone, email}) {
+  ...
+  }
+  ```
+- 
+
   
 
 
