@@ -7,46 +7,59 @@ This is going to be another rather lengthy note documenting my learning as I'm g
 
 ### First React code, why React, and building a React info site
 ---
+
 #### Setting up
 - This is mostly going through an easy setup and starting a simple React project.
 
   To start, adding the CDN links from [here](https://reactjs.org/docs/cdn-links.html) script to the `<head>` tag of an HTML document:
+  
   ```HTML
   <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   ```
+  
   and another `<script>` to use Babel transformer under `<body>` tag:
+  
   ```HTML
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   ```
 
   To print something on screen, use `ReactDOM.render(what_to_print, where_to_print_it)`, for example:
+  
   ```javascript
   ReactDOM.render(<h1>Hello, everyone!</h1>, document.getElementById("root"))
   ```
+  
   this will print out "Hello, everyone!" in `<h1>` style.
 
 - A more correct way to set up React would be adding these two lines in .js file that we're working with:
+- 
   ```javascript
   import React from "react"
   import ReactDOM from "react-dom"
   ```
+  
 - Set up React locally with Create React App:
   - First, make sure that we have Node.js and NPM installed on local machine (type into Terminal: `node -v` and `npm -v` to check. If we don't already have Node.js, we need to install it with [nvm](https://github.com/nvm-sh/nvm) or [nvm-window](https://github.com/coreybutler/nvm-windows)
   - Go to [Create React App](https://create-react-app.dev/) webpage
   - To create a project called _my-app_, run this command in Terminal:
+ 
     ```
     npx create-react-app my-app
     ```
+    
   - Then run:
+  
     ```
     cd my-app
     npm start
     ```
+    
   - If run correctly, we should see something like `Compiled successfully!` and default React screen
 
 #### Creating first React component
 **React is composable**: Creating React component using JS function then `ReactDOM.render()` it. For example:
+
 ```javascript
 function MainContent() {
     return (
@@ -216,6 +229,7 @@ An imperative way to write our previous React code
 
 ### Data-driven React
 ---
+
 #### Props - Reusable Components
 - Putting variable name inside `{}` to inteprete it (similar to `${}` in JS). Furthermote, anything in between `{}` will be run as javascript.
 - Props (or attributes) in React makes a component for reusable. Props is a JS Object.
@@ -338,7 +352,10 @@ An imperative way to write our previous React code
   this might not look like a lot of improvements here, but for a page with more props/attributes to display, `item={item}` will really make a difference.
 - Another convention tha is commonly used is to spread object as props. So for the example above, we'll keep `props.setup` and `props.punchline` in `Jokes.js` file and in `App.js`, instead of `item={item}`, we'll use the spreading syntax `{...item}`. However, this might be a little bit confusing sometimes.
 
+### Building interactive web apps with React
+---
 
+#### 
   
 
 
