@@ -407,7 +407,7 @@ An imperative way to write our previous React code
   ```
   
 - Additional documentation on State and how to use is can be found [here](https://reactjs.org/docs/hooks-state.html)
-  
+
 
 
 
