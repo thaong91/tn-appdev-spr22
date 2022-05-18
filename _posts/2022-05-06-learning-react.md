@@ -232,7 +232,7 @@ An imperative way to write our previous React code
 
 #### Props - Reusable Components
 - Putting variable name inside `{}` to inteprete it (similar to `${}` in JS). Furthermote, anything in between `{}` will be run as javascript.
-- Props (or attributes) in React makes a component for reusable. Props is a JS Object.
+- Props (or attributes) in React makes a component for reusable. Props are JS Objects that are passed into a component in order for it to work correctly, similar to how a function receives parameters. Props are immutable, meaning a component receiving props is not allowed to modify these props. Here is a simple example of how props are used:
   ```javascript
   import React from "react"
   
@@ -355,7 +355,44 @@ An imperative way to write our previous React code
 ### Building interactive web apps with React
 ---
 
-#### 
+#### Event Listeners
+- `onClick` is a event handler/listener that will do something when an element (typically a button) is clicked, for example, in this code below, we have console prints out "I was clicked!" when a button is clicked on (notice that we write `{handleClick}` instead of `{handleClick()}` because in the second way, this function will run as soon as the page is rendered.
+  ```javascript
+  export default function App() {
+    function handleClick() {
+        console.log("I was clicked!")
+    }
+    return (
+        <div className="container">
+            <img src="https://picsum.photos/640/360" />
+            <button onClick={handleClick}>Click me</button>
+        </div>
+    )
+  }
+  ```
+- A list of all events in React can be found [here](https://reactjs.org/docs/events.html). Most of the time, we'll be using mouse events.
+
+#### State
+- State is different from Props (see above) in that State refers to values that are managed by the component (hence it's expected to be changed by the component), similar to variables declared inside a function. Any time we have changing values that should be saved/displayed, we'll likely be using state. 
+- We either type `React.useState()` everytime we need to use it once we've already imported React, or we can do `import { useState } from 'react'` and skip the `React.` part
+- `React.useState()` is a React method/hook that returns an array `[some_value, f()]`. A `useState()` composes of a state variable or current state and a function to update the state variable. We also need to pass in an initial state (such as count = 0 or "active", etc.):
+  ```javascript
+  [count, setCount] = useState(0)
+  ```
+  In this case, `count` is the state variable, `setCount` is the function that update `count` and `0` is the initial count.
+- If we ever need the old value of state to help you determine the new value of state, we should pass a callback function to our state setter function (`setCount` above) instead of using state directly. This callback function will receive the old value of state as its parameter, which we can then use to determine our new value of state. For example, instead of:
+  ```javascript
+  function subtract() {
+    setCount(count - 1)
+  }
+  ```
+  where we change/update `count` directly, a more conventional way to do the same thing would be:
+  ```javascript
+  function subtract() {
+    setCount(prevCount => prevCount - 1)
+  }
+  ```
+- Additional documentation on State and how to use is can be found [here](https://reactjs.org/docs/hooks-state.html)
   
 
 
