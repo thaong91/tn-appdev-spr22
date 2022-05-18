@@ -262,6 +262,7 @@ An imperative way to write our previous React code
 - By default, props are string, so we use `{}` to contain other types of data other than string, such as `price={150}`
 - A simple Jokes project to illustrate how to use props and `.maps()` method (which converts an array of raw data into an array of JSX elements that can be displayed on the page and makes our code more self-sustaining, not requiring changes when new data with the same structured are being generated and needed to be displayed):
   - We have a `jokesData.js` to contain all jokes, each with a `setup` and `punchline`:
+  
     ```javascript
     export default [
     {
@@ -300,7 +301,9 @@ An imperative way to write our previous React code
       ) 
     }
     ```
+    
   - Lastly, we'll compose an `App.js` file that will take in `Joke.js` component (and ideally other components as well, in the case of a more realistic webpage) and display:
+  
     ```javascript
     import React from "react"
     import Joke from "./Joke"
@@ -317,8 +320,10 @@ An imperative way to write our previous React code
       )
     }
     ```
+    
 - We can actually make some small changes to `Joke.js` and `App.js` above to make our code more concise:
   In `Joke.js`, instead of `props.setup`, we'll use: `props.item.setup`:
+  
   ```javascript
   import React from "react"
 
@@ -332,7 +337,9 @@ An imperative way to write our previous React code
      ) 
   }
   ```
+  
   that will allow us to simplify `App.js`:
+  
   ```javascript
   import React from "react"
   import Joke from "./Joke"
@@ -357,6 +364,7 @@ An imperative way to write our previous React code
 
 #### Event Listeners
 - `onClick` is a event handler/listener that will do something when an element (typically a button) is clicked, for example, in this code below, we have console prints out "I was clicked!" when a button is clicked on (notice that we write `{handleClick}` instead of `{handleClick()}` because in the second way, this function will run as soon as the page is rendered.
+  
   ```javascript
   export default function App() {
     function handleClick() {
@@ -376,22 +384,28 @@ An imperative way to write our previous React code
 - State is different from Props (see above) in that State refers to values that are managed by the component (hence it's expected to be changed by the component), similar to variables declared inside a function. Any time we have changing values that should be saved/displayed, we'll likely be using state. 
 - We either type `React.useState()` everytime we need to use it once we've already imported React, or we can do `import { useState } from 'react'` and skip the `React.` part
 - `React.useState()` is a React method/hook that returns an array `[some_value, f()]`. A `useState()` composes of a state variable or current state and a function to update the state variable. We also need to pass in an initial state (such as count = 0 or "active", etc.):
+  
   ```javascript
   [count, setCount] = useState(0)
   ```
+  
   In this case, `count` is the state variable, `setCount` is the function that update `count` and `0` is the initial count.
 - If we ever need the old value of state to help you determine the new value of state, we should pass a callback function to our state setter function (`setCount` above) instead of using state directly. This callback function will receive the old value of state as its parameter, which we can then use to determine our new value of state. For example, instead of:
+  
   ```javascript
   function subtract() {
     setCount(count - 1)
   }
   ```
+  
   where we change/update `count` directly, a more conventional way to do the same thing would be:
+  
   ```javascript
   function subtract() {
     setCount(prevCount => prevCount - 1)
   }
   ```
+  
 - Additional documentation on State and how to use is can be found [here](https://reactjs.org/docs/hooks-state.html)
   
 
