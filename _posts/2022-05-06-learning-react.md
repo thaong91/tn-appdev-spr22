@@ -74,25 +74,31 @@ ReactDOM.render(
     document.getElementById("root")
 )
 ```
+
 **React is declarative**: 
 _Declarative_ = What should be done? vs. _Imperative_ = How should it be done?
 An imperative way to write our previous React code
+  
   ```javascript
   ReactDOM.render(<h1>Hello, everyone!</h1>, document.getElementById("root"))
   ```
+  
   is to write these in JS:
+  
   ```javascript
   const h1 = document.createElement("h1")
   h1.textContent = "This is an imperative way to program"
   h1.className = "header"
   document.getElementById("root").append(h1)
   ```
+  
   which is a lot more complicated and time-consuming. 
 
 #### JSX
 - JSX makes React declarative rather than imperative by creating JS Objects.
 - Only render one parent element at a time, for example:
 - Rather than doing this and render both `<h1>` and `<p>` elements:
+  
   ```javascript
   ReactDOM.render(
     <h1 className="header">This is JSX</h1>
@@ -100,7 +106,9 @@ An imperative way to write our previous React code
     document.getElementById("root")
   )
   ```
+  
   do this and wrap both of them inside a parent `<div>` tag instead:
+  
   ```javascript
   ReactDOM.render(
     <div>
@@ -110,10 +118,12 @@ An imperative way to write our previous React code
     document.getElementById("root")
   )
   ```
+  
 - We can also save the whole `<div>` tag above under a variable.
 
 #### Custom components
 - Reusable components in React are JS functions that we can call to return React elements. For a simple webpage, this is how it will look like:
+  
   ```javascript
   import React from "react"
   import ReactDOM from "react-dom"
@@ -142,8 +152,10 @@ An imperative way to write our previous React code
 
   ReactDOM.render(<MainPage />, document.getElementById("root"))
   ```
+  
 - We need to use PascalCase instead of camelCase to name React component.
 - Now, instead of keeping everythinng in one parent `MainPage` component, we can separate the above code out to different child components and render them:
+  
   ```javascript
   import React from "react"
   import ReactDOM from "react-dom"
@@ -192,31 +204,43 @@ An imperative way to write our previous React code
 
   ReactDOM.render(<Page />, document.getElementById("root"))
   ```
+  
 - Styling in React is very similar to styling in HTML and CSS, but insead of `class=""` we use `className=""`
 
 #### Organizing components
 - Best practice is to separate a substantial React component out to its own `.js` file. For example, we can create a `Header.js` file to contain the `Header` component above. In this file, there are a few things that we need to do to make this component works:
   As usual, add:
+  
   ```javascript
   import React from "react"
   ```
+  
   Then add `export default` like this to the function name:
+  
   ```javascript
   export default function Header() {}
   ```
+  
   Over at the `index.js` (or any other `.js` file that we will need to use this `Header` component), add:
+  
   ```javascript
   import Header from "./Header"
   ```
+  
 - For styling, we will put a `style.css` (or other `.css` files that we will use to style our webpage) in the `src` folder. Then to import this style file:
+  
   ```javascript
   import "./style.css"
   ```
+  
 - For images, we'll put them in `images` folder within `src` folder. Then import them to the `.js` file that renders our page, for example:
+  
   ```javascript
   import reactLogo from "../images/react-icon-small.png"
   ```
+  
   and then instead of using the relative path within `<img>` tag, we just refer to the image name:
+  
   ```javascript
   <img
     src={reactLogo}
@@ -224,6 +248,7 @@ An imperative way to write our previous React code
     className="nav--icon"
   />
   ```
+  
 - Otherwise, we can use the Public folder to keep these images, but generally, there are some negatives to that.
 - `::marker` is a CSS pseudo-element that selects markers of a bulletted or numbered list. Read more [here](https://developer.mozilla.org/en-US/docs/Web/CSS/::marker)
 
@@ -233,6 +258,7 @@ An imperative way to write our previous React code
 #### Props - Reusable Components
 - Putting variable name inside `{}` to inteprete it (similar to `${}` in JS). Furthermote, anything in between `{}` will be run as javascript.
 - Props (or attributes) in React makes a component for reusable. Props are JS Objects that are passed into a component in order for it to work correctly, similar to how a function receives parameters. Props are immutable, meaning a component receiving props is not allowed to modify these props. Here is a simple example of how props are used:
+  
   ```javascript
   import React from "react"
   
@@ -253,12 +279,15 @@ An imperative way to write our previous React code
     )
   }
   ```
+  
   where `props.img`, `props.name`, `props.phone`, `props.email` are props that are going to be rendered. WE can also destructure this props object and write 
+  
   ```react
   export default function Contact({img, name, phone, email}) {
   ...
   }
   ```
+  
 - By default, props are string, so we use `{}` to contain other types of data other than string, such as `price={150}`
 - A simple Jokes project to illustrate how to use props and `.maps()` method (which converts an array of raw data into an array of JSX elements that can be displayed on the page and makes our code more self-sustaining, not requiring changes when new data with the same structured are being generated and needed to be displayed):
   - We have a `jokesData.js` to contain all jokes, each with a `setup` and `punchline`:
@@ -288,6 +317,7 @@ An imperative way to write our previous React code
     ]
     ```
   - Now, we have a `Joke.js` file which is a React component that will tell how jokes are displayed on a page:
+    
     ```javascript
     import React from "react"
 
@@ -356,6 +386,7 @@ An imperative way to write our previous React code
       )
     }
   ```
+  
   this might not look like a lot of improvements here, but for a page with more props/attributes to display, `item={item}` will really make a difference.
 - Another convention tha is commonly used is to spread object as props. So for the example above, we'll keep `props.setup` and `props.punchline` in `Jokes.js` file and in `App.js`, instead of `item={item}`, we'll use the spreading syntax `{...item}`. However, this might be a little bit confusing sometimes.
 
@@ -378,6 +409,7 @@ An imperative way to write our previous React code
     )
   }
   ```
+  
 - A list of all events in React can be found [here](https://reactjs.org/docs/events.html). Most of the time, we'll be using mouse events.
 
 #### State
@@ -406,6 +438,53 @@ An imperative way to write our previous React code
   }
   ```
   
+- When the state that we need to update is an Object and it relies on one attribute (or more of that object), we need to make sure to set the state with the attribute that needs to be updated but also bringing in/spreading the entire Object as well. For example, in the tutorial, we have an example such that a star either be empty or filled whether a contact is favorited or not:
+  
+  ```javascript
+  export default function App() {
+    const [contact, setContact] = React.useState({
+        firstName: "John",
+        lastName: "Doe",
+        phone: "+1 (719) 555-1212",
+        email: "itsmyrealname@example.com",
+        isFavorite: false
+    })
+    
+    let starIcon = contact.isFavorite ? "star-filled.png" : "star-empty.png"
+    
+    function toggleFavorite() {
+        setContact(prevState => {
+            return {
+                 ...prevState,
+                isFavorite: !prevState.isFavorite
+            }
+        })
+    }
+    
+    return (
+        <main>
+            <article className="card">
+                <img src="./images/user.png" className="card--image" />
+                <div className="card--info">
+                    <img 
+                        src={`../images/${starIcon}`} 
+                        className="card--favorite"
+                        onClick={toggleFavorite}
+                    />
+                    <h2 className="card--name">
+                        {contact.firstName} {contact.lastName}
+                    </h2>
+                    <p className="card--contact">{contact.phone}</p>
+                    <p className="card--contact">{contact.email}</p>
+                </div>
+                
+            </article>
+        </main>
+    )
+  }
+  ```
+  
+  In this case, when we use `setContact` to change the state of `contact.isFavorite` to either `true` or `false`, we need to spread the entire previous state of the `contact` object by `...prevContact`
 - Additional documentation on State and how to use is can be found [here](https://reactjs.org/docs/hooks-state.html)
 
 
