@@ -533,9 +533,8 @@ switch (colorMode) {
     "Chicken Pot Pie",
     "Fish Sandwich",
     "Beef Stroganoff"
-  ];
-
+    ];
+  
   const uniqueDishes = [...new Set(customerDishes)];
   console.log(uniqueDishes)
   ```
-  
