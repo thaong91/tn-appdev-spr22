@@ -364,3 +364,178 @@ switch (colorMode) {
 ### Arrays and Sets
 ---
 #### Arrays
+- Unlike Object, whose elements are key-value pairs and are identifiable by its key and position agnostic, Array keeps the order in which element is added.
+
+##### Some useful array methods:
+- `Array.push()` to add an element/item to an array
+- `Array.pop()` to remove the last element of an array
+- `Array.indexOf()` to find index of an element in an array. It will return the value `-1` if it cannot find an element. `Array.findIndex()` is similar.
+- `Array.includes()` return a boolean on whether an element (string, integer, or boolean) exist in an array. We use `Array.some()`, which also returns a boolean, instead when Array contains Objects, for example:
+  
+  ```javascript
+  const temperatures = [
+    { degrees: 69, isRecordTemp: false }, 
+    { degrees: 82, isRecordTemp: true }, 
+    { degrees: 73, isRecordTemp: false }, 
+    { degrees: 64, isRecordTemp: false }
+  ];
+
+  temperatures.some(temperature => temperature.isRecordTemp === true);
+  ```
+  `Array.some()` will return `true` if at least one of the item meets the condition whereas `.every()` will iterate through all items and will only return `true` if all of them meet the condition.
+- `Array.map()` can iterate through and perform actions on all elements of the array and then return a new array. For example:
+  
+  ```javascript
+  const newTemps = temperatures.map(temperature => 
+  temperature.degrees > 70 ? { ...temperature, isHigh: true } : temperature);
+  ```
+- `Array.forEach()` also iterate through all elements in an array, but it can perform an action without returning a new array. 
+  
+  ```javascript
+  newTemps.forEach(temperature => {
+   if (temperature.isHigh) {
+     console.log(`Temperature ${temperature.degrees} was a record high last week!`);  
+   }
+  ```
+- `Array.filter()` is used to get a subset of array if it's satisfied a condition:
+
+  ```javascript
+  const restaurants = [
+  { name: 'Cap City Diner', milesAway: 2.2 },
+  { name: 'Chop Shop', milesAway: 4.1 },
+  { name: 'Northstar Cafe', milesAway: 0.9 },
+  { name: 'City Tavern', milesAway: 0.5 },
+  { name: 'Shake Shack', milesAway: 5.3 }
+  ]
+
+  const results = restaurants.filter(restaurant => restaurant.name.startsWith('C'))
+  ```
+  it will return an empty array `[]` if no element meets searching requirement.
+- `Array.find()` works like `.filter()` but will only return the first element that is a match
+- `Array.reduce()`also iterates through all elements, but we'll need to pass in: a callback function and an initial value. For example:
+  ```javascript
+  const menuItems = [
+  { item: "Blue Cheese Salad", price: 8 },
+  { item: "Spicy Chicken Rigatoni", price: 18 },
+  { item: "Ponzu Glazed Salmon", price: 23 },
+  { item: "Philly Cheese Steak", price: 13 },
+  { item: "Baked Italian Chicken Sub", price: 12 },
+  { item: "Pan Seared Ribeye", price: 31 }
+  ];
+
+  const total = menuItems.reduce((accumulator, menuItem) => {
+    return accumulator + menuItem.price;  
+  }, 0);
+  ```
+  Starting at `0`, the callback function will take `price` from each element of `menuItems` and add them up and store that value in the `accumulator` variable.
+- `.push()` does mutate an array whereas `.concat()` adds new item to a copy of an existing array while not mutae the original array. Similarly, we can use the spread operator `...` to create a copy of an array. For example:
+
+  ```javascript
+  const lunchMenuIdeas = ['Harvest Salad', 'Southern Fried Chicken'];
+  const allMenuIdeas = lunchMenuIdeas;
+  allMenuIdeas.push('Club Sandwich');
+  ```
+  
+  The above code will resolve in `lunchMenuIdeas` being mutated, whereas this will not:
+  
+  ```javascript
+  const lunchMenuIdeas = ['Harvest Salad', 'Southern Fried Chicken'];
+  const allMenuIdeas = [...lunchMenuIdeas];
+  allMenuIdeas.push('Club Sandwich');
+  ```
+- `Array.slice(starting_index, ending_index)` is used to get a subset of an array without mutating it
+- Destructure an array is similar to that of an object:
+  
+  ```javascript
+  const finalMenuItems = [
+  "American Cheeseburger",
+  "Southern Fried Chicken",
+  "Glazed Salmon"
+  ];
+
+  const [first, second, third] = finalMenuItems;
+  ```
+  
+  Additionally, if we want to store the first element as `winner` and the rest of the elements in a new array called `losers`, we'll the rest operator `...` (which is the same as the spread operator, so it's slightly confusing):
+  
+  ```javascript
+  const [winner, ...losers] = finalMenuItems;
+  ```
+##### Converting Objects into flexible Arrays:
+- `Object.keys()` is a method to iterate over all keys in an object. We can chain other array methods after that. For example:
+  
+  ```javascript
+  const user = {
+  name: 'John',
+  age: 29  
+  };
+  
+  const ageExists = Object.keys(user).includes("age");
+  ```
+- `Object.values()` is a method that iterates over all values:
+  
+  ```javascript
+  const monthlyExpenses = {
+  food: 400,
+  rent: 1700,
+  insurance: 550,
+  internet: 49,
+  phone: 95  
+  };
+
+  const monthlyTotal = Object.values(monthlyExpenses).reduce((acc, expense) => acc + expense, 0);
+  console.log(monthlyTotal);
+  ```
+- `Object.entries()` is used to iterate over all elements in an Object, both keys and values:
+  ```javascript
+  const users = {
+  '2345234': {
+    name: "John",
+    age: 29
+  },
+  '8798129': {
+    name: "Jane",
+    age: 42
+  },
+  '1092384': {
+    name: "Fred",
+    age: 17 
+  }
+  };
+
+  const usersOver20 = Object.entries(users).reduce((acc, [id, user]) => {
+    if (user.age > 20) {
+      acc.push({ ...user, id });
+    }  
+    return acc;
+  }, []);
+  
+  console.log(usersOver20);
+  ```
+  `[id, user]` above is array destructuring where we save all object keys into `id` and the name and age into `user`. 
+ 
+ #### Sets
+ - Set is a new data structure that was added to ES6
+ - Set tosses out any repetitive item.
+ - Create a new set by `new Set()`
+ 
+   ```javascript
+   const customerDishes = [
+    "Chicken Wings",
+    "Fish Sandwich",
+    "Beef Stroganoff",
+    "Grilled Cheese",
+    "Blue Cheese Salad",
+    "Chicken Wings",
+    "Reuben Sandwich",
+    "Grilled Cheese",
+    "Fish Sandwich",
+    "Chicken Pot Pie",
+    "Fish Sandwich",
+    "Beef Stroganoff"
+  ];
+
+  const uniqueDishes = [...new Set(customerDishes)];
+  console.log(uniqueDishes)
+  ```
+  
