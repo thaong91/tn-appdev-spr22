@@ -535,6 +535,6 @@ switch (colorMode) {
     "Beef Stroganoff"
     ];
   
-  const uniqueDishes = [...new Set(customerDishes)];
-  console.log(uniqueDishes)
-  ```
+    const uniqueDishes = [...new Set(customerDishes)];
+    console.log(uniqueDishes)
+    ```
