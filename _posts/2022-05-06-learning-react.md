@@ -487,9 +487,151 @@ An imperative way to write our previous React code
   In this case, when we use `setContact` to change the state of `contact.isFavorite` to either `true` or `false`, we need to spread the entire previous state of the `contact` object by `...prevContact`
 - Additional documentation on State and how to use is can be found [here](https://reactjs.org/docs/hooks-state.html)
 
+#### Passing data to components
+- We cannot pass data around sibling components at the same level. For example, we cannot pass components between `Header` and `Body` components in our previous example.
+- We can, however, pass data from a parent to its child components through `Props`, so in order to pass data from a State in a sibling component to another sibling component, we can raise that State from the child to parent component and pass that down to the other child component. For example, we want to use user data in both `Header.js` and `Body.js` components, which are both rendered in a parent `App.js` component:
+  We will raise the `user` State to the `App` level:
+  
+  ```javascript
+  import React from "react"
+  import Header from "./Header"
+  import Body from "./Body"
 
+  export default function App() {
+      const [user, setUser] = React.useState("Joe")
 
+      return (
+          <main>
+              <Header user={user} />
+              <Body user={user} />
+          </main>
+      )
+  }
+  ```
+  Notice that we pass the `user` as Props down to the markup:
+  
+  ```javascript
+  <Header user={user} />
+  <Body user={user} />
+  ```
+  Then, in the `Header.js` component, we accept and display props:
+  ```javascript
+  import React from "react"
 
+  export default function Header(props) {
+    return (
+      <header>
+        <p>Current user: {props.user}</p>
+      </header>
+      )
+  }
+  ```
+  
+  Similarly, for the `Body.js` component:
+  
+  ```javascript
+  import React from "react"
+
+  export default function Body(props) {
+      return (
+        <section>
+          <h1>Welcome back, {props.user}!</h1>
+        </section>
+      )
+  }
+  ```
+- This is important as we design an app and make sure that we structure data at the right level.
+
+#### Dynamic styles
+- While writing JSX, we use `{}` to signal that we'll start writing javascript code within JSX. Another nested `{}` will indicate a javascript object, so it will look something like this: `{{}}`. But this can be confusing, so it's better to keep only one set of `{}` at a time and bring the javascript object out. 
+
+#### Derived State
+- This enables a component to update its internal state as the result of changes in props. However, this should be used sparingly (many reasons why this should be the case is avaiable [here](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html))
+
+#### Conditional Rendering
+- Use `&&` when we want something is rendered on a page or not based on some conditions, for example:
+  
+  ```javascript
+  {isShown && <p>{props.punchline}</p>}
+  ```
+  
+  in this case, `props.punchline` is only rendered if `isShown` is `true`.
+
+#### React forms
+- Documentation on React forms can be found [here](https://reactjs.org/docs/forms.html). Example of a simple form recording First Name and Last Name:
+  
+  ```javascript
+  export default function Form() {
+    const [formData, setFormData] = React.useState(
+        {firstName: "", lastName: ""}
+    )
+    
+    function handleChange(event) {
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+    
+    return (
+        <form>
+            <input
+                type="text"
+                placeholder="First Name"
+                onChange={handleChange}
+                name="firstName"
+            />
+            <input
+                type="text"
+                placeholder="Last Name"
+                onChange={handleChange}
+                name="lastName"
+            />
+        </form>
+    )
+  }
+  ```
+  To prevent code repetition, we use state object `{firstName:"", lastName:""}` here and give each of the form input a `name` attribute to distinguish them so that the `handleChange()` function is much more flexible.
+  
+##### Controlled Component
+- Documentation on controlled component can be found [here](https://reactjs.org/docs/forms.html#controlled-components)
+- To do this, we'll need to set input value to state value with:
+  ```javascript
+   <form>
+      <input
+          type="text"
+          placeholder="First Name"
+          onChange={handleChange}
+          name="firstName"
+          value={formData.firstName}
+       />
+       <input
+          type="text"
+          placeholder="Last Name"
+          onChange={handleChange}
+          name="lastName"
+          value={formData.lastName}
+        />
+        </form>
+  ```
+##### Textarea, Checkboxes, and Radio button
+- Unlike in HTML, `textarea` in React is a self-closing element: `<textarea />` (similar to `<input />`) where we can set property such as `value={}`. Otherwise, everything else should remain the same.
+- Checkbox is `<input type="checkbox" />` with a `checked` property inside to determine whether a box is checked or not. For example:
+  
+  ```javascript
+  <input 
+    type="checkbox" 
+    id="isFriendly" 
+    checked={formData.isFriendly}
+  />
+  
+  <label htmlFor="isFriendly">Are you friendly?</label>
+  ```
+- Radio button
+
+  
 
 
 
